@@ -8,8 +8,11 @@ kubeyaml-server:
 	go build -o kubeyaml-server ./cmd/server
 
 docker:
+ifndef DOCKER_TAG
+	$(error "DOCKER_TAG must defined, example format: DOCKER_TAG=your-company/kubeyaml:latest")
+endif
 	GOOS=linux go build -o kubeyaml ./cmd/kubeyaml
-	docker build -f Dockerfile --tag=atsuio/k8slynter:latest .
+	docker build -f Dockerfile --tag=$(DOCKER_TAG) .
 
 .PHONY: clean
 
