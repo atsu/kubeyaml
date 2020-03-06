@@ -14,7 +14,7 @@ endif
 	GOOS=linux go build -o kubeyaml ./cmd/kubeyaml
 	docker build -f Dockerfile --tag=$(DOCKER_TAG) .
 
-.PHONY: clean
+.PHONY: clean docker
 
 clean:
-	rm -f kubeyaml kubeyaml-server docker
+	rm -f kubeyaml kubeyaml-server
